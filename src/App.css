@@ -13,6 +13,48 @@
   }
 }
 
+@font-face {
+  font-family: "FairPlay";   /*Can be any text*/
+  src: local("FairPlay"),
+    url("./assets/fonts/PlayfairDisplay-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "RobotoCondensed";   /*Can be any text*/
+  src: local("RobotoCondensed"),
+    url("./assets/fonts/RobotoCondensed-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "BrownSugar";   /*Can be any text*/
+  src: local("BrownSugar"),
+    url("./assets/fonts/BrownSugar.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gotham";   /*Can be any text*/
+  src: local("Gotham"),
+    url("./assets/fonts/Gotham-Medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "GothamLight";   /*Can be any text*/
+  src: local("GothamLight"),
+    url("./assets/fonts/Gotham-Light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "GrandCru";   /*Can be any text*/
+  src: local("GrandCru"),
+    url("./assets/fonts/GrandCru-LightS.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "FuturaLight";   /*Can be any text*/
+  src: local("FuturaLight"),
+    url("./assets/fonts/Futura-Light.otf") format("opentype");
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -35,4 +77,179 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* MosaicGallery.css */
+.mosaic-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Four images per row */
+  gap: 4px; /* Adjust the gap as needed */
+}
+
+.mosaic-item {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1; /* Maintain a square aspect ratio for each item */
+}
+
+.mosaic-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.background-image11 {
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  animation: fadeInOut 5s ease-in-out;
+}
+
+.background-image11.hovered {
+  opacity: 1;
+  animation: fadeInOut 5s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+  }
+}
+
+.background-image12 {
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  animation: fadeInOut 5s ease-in-out;
+}
+
+.background-image12.hovered1 {
+  opacity: 1;
+  animation: fadeInOut 5s ease-in-out;
+}
+
+@keyframes fadeInOut1 {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn1 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+  }
+}
+
+.date-input-wrapper {
+  position: relative;
+  /* Ensure the input is displayed inline */
+  display: inline-block;
+}
+
+.custom-date-input {
+  /* Remove default styles */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Set custom styles */
+  border: none;
+  outline: none;
+  background: none;
+  /* Additional styling as needed */
+}
+
+.off-screen {
+  display: none;
+}
+
+.calendar {
+  margin-bottom:10px;
+  padding: 30px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.weekdays {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.weekday {
+  flex: 1;
+  text-align: center;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 7px;
+}
+
+.day {
+  text-align: center;
+  padding: 7px;
+}
+
+.empty {
+  border: none; /* Remove border for empty cells */
+}
+
+.additional-info {
+  overflow: hidden;
+}
+
+.slide-up {
+  transform: translateY(-100%);
+}
+
+.sticky-header {
+  width: 100%;
+  height: 80px;
+  background-color: white;
+  position: fixed;
+  top: -80px;
+  transition: top 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.sticky-header.show {
+  top: 0;
+}
+
+.navigation-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1000; /* Adjust z-index as necessary */
+}
+
+.navigation-bar.sticky {
+  position: fixed;
+  top: 0px; /* Account for the height of the sticky header */
+  background-color: transparent; /* Change background color to your desired color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for a better visual */
 }

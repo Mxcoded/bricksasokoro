@@ -1,23 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import './index.css'
+import MainScreen from './screens/MainScreen';
+import AboutUsScreen from './screens/AboutUsScreen';
+import MenuScreen from './screens/MenuScreen';
+import BookScreen from './screens/BookScreen';
+import BookRoomsScreen from './screens/BookRoomsScreen';
+import RoomsScreen from './screens/RoomsScreen';
+import GalleryScreen from './screens/GalleryScreen';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{width: '100%'}}>
+      <Routes>
+        <Route path='/' element={<MainScreen />} />
+        <Route path='/aboutus' element={<AboutUsScreen />} />
+        <Route path='/menu' element={<MenuScreen />} />
+        <Route path='/book' element={<BookScreen />} />
+        <Route path='/bookrooms' element={<BookRoomsScreen />} />
+        <Route path='/rooms' element={<RoomsScreen />} />
+        <Route path='/gallery' element={<GalleryScreen />} />
+      </Routes>
     </div>
   );
 }
