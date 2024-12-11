@@ -68,7 +68,7 @@ function AboutUs() {
                     Experience the capital in twenty-two sleek, private apartments.
                 </div>
                 <div style={{ width: 1, height: 60, transition: 'height 0.5s ease-in-out', backgroundColor: '#5A5D5F', marginTop: 20 }}></div>
-                <div style={{ fontSize: 16, fontFamily: 'FuturaLight', color: '#5A5D5F', marginTop: 20 }}>22 PLACES TO SEE IN ABUJA</div>
+                <div style={{ fontSize: 16, fontFamily: 'FuturaLight', color: '#5A5D5F', marginTop: 20 }}></div>
                 <div style={{ width: screenSize.width < 700 ? '95%' : '60%', fontSize: screenSize.width < 700 ? 16 : 20, fontFamily: 'FuturaLight', color: '#000', marginTop: 20, textAlign: 'center' }}>
                     Enjoy modern amenities, including high-speed WIFI and state of-the-art systems. The spacious and thoughtfully arranged interiors provide a serene retreat, while our large windows offer a natural day light and large terrace.
                 </div>

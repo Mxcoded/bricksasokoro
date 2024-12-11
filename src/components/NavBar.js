@@ -1,259 +1,105 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { useNavigate } from 'react-router-dom';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import Logo from '../assets/images/logo.png'
-import BedOutlinedIcon from '@mui/icons-material/BedOutlined';
-import Bed from '../assets/images/hotelimage/bed.png'
-import Dinner from '../assets/images/hotelimage/dinner.png'
-import { HashLink as Link } from 'react-router-hash-link';
+import Logo from '../assets/images/logo.png';
+import '../App.css'; // Import your CSS file
 
-function NavBar() {
-
-    const [screenSize, setScreenSize] = useState(getCurrentDimension());
-    const [selectColor, setSelectColor] = useState('')
-    const [selectColor1, setSelectColor1] = useState('')
-    const [selectColor2, setSelectColor2] = useState('')
-
-    const navigation = useNavigate()
-    const [show, setShow] = useState(false)
+function Navbar() {
+    const [screenSize, setScreenSize] = useState(window.innerWidth);
     const [showMenu, setShowMenu] = useState(false);
     const [isSticky, setIsSticky] = useState(false);
-
-    const [isScrolledDown, setIsScrolledDown] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
+        const handleResize = () => setScreenSize(window.innerWidth);
+        const handleScroll = () => setIsSticky(window.scrollY > 0);
+
+        window.addEventListener('resize', handleResize);
         window.addEventListener('scroll', handleScroll);
+
         return () => {
+            window.removeEventListener('resize', handleResize);
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
-    const handleScroll = () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        setIsSticky(scrollTop > 0);
+    const toggleMenu = () => setShowMenu(!showMenu);
 
-        if (scrollTop > (document.documentElement.clientHeight * 0.5)) {
-            setIsScrolledDown(true);
-        } else {
-            setIsScrolledDown(false);
-        }
-    };
+    const menuItems = [
+        { name: 'Home', path: '/' },
+        { name: 'Stay', path: '/rooms' },
+        { name: 'Dine', path: '/menu' },
+        { name: 'Events', path: '/events' },
+        { name: 'Gallery', path: '/gallery' },
+        { name: 'About Us', path: '/aboutus', isHashLink: true },
+    ];
 
-    function getCurrentDimension() {
-        return {
-            width: window.innerWidth,
-            height: window.innerHeight
-        }
-    }
-
-    useEffect(() => {
-        const updateDimension = () => {
-            setScreenSize(getCurrentDimension())
-        }
-        window.addEventListener('resize', updateDimension);
-
-
-        return (() => {
-            window.removeEventListener('resize', updateDimension);
-        })
-    }, [screenSize])
-
-    const [selectedItem, setSelectedItem] = useState(null);
-
-    const handleClick = (item) => {
-        setSelectedItem(item);
-        // Scroll to the element with the corresponding id
-        document.getElementById(item).scrollIntoView({ behavior: 'smooth' });
-    };
-
-    const menu = () => {
-        setShow(!show)
-    }
-
-    const onHoverIn = () => {
-        setSelectColor('#5A5D5F')
-    }
-
-    const onHoverOut = () => {
-        setSelectColor('')
-    }
-
-    const onHoverIn1 = () => {
-        setSelectColor1('#5A5D5F')
-    }
-
-    const onHoverOut1 = () => {
-        setSelectColor1('')
-    }
-
-    const onHoverIn2 = () => {
-        setSelectColor2('#5A5D5F')
-    }
-
-    const onHoverOut2 = () => {
-        setSelectColor2('')
-    }
+    const renderMenuItems = () => (
+        menuItems.map((item, index) => (
+            item.isHashLink ? (
+                <Link
+                    key={index}
+                    to={item.path}
+                    smooth
+                    className="menu-item"
+                    onClick={() => setShowMenu(false)}
+                >
+                    {item.name}
+                </Link>
+            ) : (
+                <div
+                    key={index}
+                    className="menu-item"
+                    onClick={() => {
+                        navigate(item.path);
+                        setShowMenu(false);
+                    }}
+                >
+                    {item.name}
+                </div>
+            )
+        ))
+    );
 
     return (
-        <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', paddingTop: screenSize.width < 700 ? 5 : 0 }} className={`navigation-bar ${isSticky ? 'sticky' : ''}`}>
-            <div className={`sticky-header ${isScrolledDown ? 'show' : ''}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', }}>
-                <>
-                    {screenSize.width < 700 ? (
-                        <div style={{ width: '100%', position: 'relative', marginTop: screenSize.width < 700 ? 15 : 40 }}>
-                            <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-                                <div onClick={menu} style={{ marginLeft: 10 }}>
-                                    <MenuIcon style={{ fontSize: 30, color: '#000', cursor: 'pointer' }} />
-                                </div>
-
-                                {show == false ? (
-                                    <></>
-                                ) : (
-                                    <div onClick={() => setShow(false)}>
-                                        <CloseIcon style={{ fontSize: 30, color: '#fff' }} />
-                                    </div>
-                                )}
-                            </div>
-
-                            {show == false ? (
-                                <></>
-                            ) : (
-                                <div style={{ width: '100%', height: '100vh', backgroundColor: '#fff', position: 'absolute' }}>
-                                    <div style={{ width: '100%', height: 55, border: '1px solid #ccc', display: 'flex', alignItems: 'center', paddingLeft: 10, cursor: 'pointer', fontFamily: 'RobotoCondensed', justifyContent: 'space-between' }} onClick={() => navigation('/')}>
-                                        <div></div>
-                                        {show == false ? (
-                                            <></>
-                                        ) : (
-                                            <div onClick={() => setShow(false)}>
-                                                <CloseIcon style={{ fontSize: 30, color: '#000' }} />
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div style={{ color: '#000', width: '100%', height: 55, border: '1px solid #ccc', fontSize: 18, fontWeight: 'bold', display: 'flex', alignItems: 'center', paddingLeft: 10, cursor: 'pointer', fontFamily: 'FuturaLight' }} onClick={() => navigation('/')}>Home</div>
-                                    <div style={{ color: '#000', width: '100%', height: 55, border: '1px solid #ccc', fontSize: 18, fontWeight: 'bold', display: 'flex', alignItems: 'center', paddingLeft: 10, cursor: 'pointer', fontFamily: 'FuturaLight' }} onClick={() => navigation('/rooms')}>Stay</div>
-                                    <div style={{ color: '#000', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }} onClick={() => navigation('/menu')}>Dine</div>
-                                    <div style={{ color: '#000', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }}>Events</div>
-                                    <div style={{ color: '#000', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }} onClick={() => navigation('/gallery')}>Gallery</div>
-                                    <Link style={{textDecoration: 'none'}} smooth to="/aboutus"><div style={{ color: '#000', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }}>About Us</div></Link>
-                                </div>
-                            )}
-                        </div>
-                    ) : (
-                        <div style={{ width: '90%', display: 'flex', justifyContent: 'space-around', marginTop: 0, alignItems: 'center' }}>
-                            <div>
-                                <img src={Logo} style={{ width: 300, height: 100, objectFit: 'contain' }} />
-                            </div>
-                            <div style={{ display: 'flex', justifyContent: 'space-around', width: '50%', marginRight: 300 }}>
-                                <div style={{ color: '#000', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }} onClick={() => navigation('/')}>Home</div>
-                                <div style={{ color: '#000', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }} onClick={() => navigation('/rooms')}>Stay</div>
-                                <div style={{ color: '#000', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }} onClick={() => navigation('/menu')}>Dine</div>
-                                <div style={{ color: '#000', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }}>Events</div>
-                                <div style={{ color: '#000', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }} onClick={() => navigation('/gallery')}>Gallery</div>
-                                <Link style={{textDecoration: 'none'}} smooth to="/aboutus"><div style={{ color: '#000', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }}>About Us</div></Link>
-                            </div>
+        <div className={isSticky ? 'sticky-navbar navbar' : 'navbar'}>
+            {screenSize < 700 ? (
+                <div className="mobile-container">
+                    <div>
+                        <img src={Logo} alt="Logo" className="logo" />
+                    </div>
+                    <MenuIcon
+                        className="menu-icon"
+                        onClick={toggleMenu}
+                    />
+                    {showMenu && (
+                        <div className="mobile-menu">
+                            <CloseIcon
+                                className="close-icon"
+                                onClick={toggleMenu}
+                            />
+                            {renderMenuItems()}
                         </div>
                     )}
-                    <div style={{ display: 'flex', position: 'absolute', right: 0 }}>
-                        <div
-                            style={{ width: screenSize.width < 700 ? 100 : 200, height: screenSize.width < 700 ? 20 : 40, border: '0.5px solid #000', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: screenSize.width < 700 ? 12 : 16, color: '#000', fontFamily: 'Gotham', cursor: 'pointer', backgroundColor: selectColor, marginRight: 20, borderRadius: 5, marginTop: screenSize.width < 700 ? 15 : 0 }}
-                            onMouseEnter={onHoverIn}
-                            onMouseLeave={onHoverOut}
-                            onClick={() => navigation('/book')}
-                        >
-                            BOOK NOW!
-                        </div>
-                        {/* <div
-                    style={{ width: 80, height: 100, border: '0.5px solid #fff', display: 'flex', justifyContent: 'center', alignItems: 'center', borderLeftWidth: 0, cursor: 'pointer', backgroundColor: selectColor1 }}
-                    onMouseEnter={onHoverIn1}
-                    onMouseLeave={onHoverOut1}
-                    onClick={() => navigation('/rooms')}
-                >
-                    <img src={Bed} style={{ width: 30, height: 30, objectFit: 'cover' }} />
                 </div>
-                <div
-                    style={{ width: 80, height: 100, border: '0.5px solid #fff', display: 'flex', justifyContent: 'center', alignItems: 'center', borderLeftWidth: 0, cursor: 'pointer', backgroundColor: selectColor2 }}
-                    onMouseEnter={onHoverIn2}
-                    onMouseLeave={onHoverOut2}
-                >
-                    <img src={Dinner} style={{ width: 40, height: 40, objectFit: 'cover' }} />
-                </div> */}
+            ) : (
+                <div className="desktop-container">
+                    <img src={Logo} alt="Logo" className="logo" />
+                    <div className="desktop-menu">
+                        {renderMenuItems()}
                     </div>
-                </>
-            </div>
-            <>
-                {screenSize.width < 700 ? (
-                    <div style={{ width: '100%', position: 'relative' }}>
-                        <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-                            <div onClick={menu}>
-                                <MenuIcon style={{ fontSize: 30, color: '#fff', cursor: 'pointer' }} />
-                            </div>
-
-                            {show == false ? (
-                                <></>
-                            ) : (
-                                <div onClick={() => setShow(false)}>
-                                    <CloseIcon style={{ fontSize: 50, color: '#fff' }} />
-                                </div>
-                            )}
-                        </div>
-
-                        {show == false ? (
-                            <></>
-                        ) : (
-                            <div style={{ width: '100%', height: '100vh', backgroundColor: '#fff', position: 'absolute' }}>
-                                <div style={{ color: '#000', width: '100%', height: 55, border: '1px solid #ccc', fontSize: 18, fontWeight: 'bold', display: 'flex', alignItems: 'center', paddingLeft: 10, cursor: 'pointer', fontFamily: 'FuturaLight' }} onClick={() => navigation('/')}>Home</div>
-                                <div style={{ color: '#000', width: '100%', height: 55, border: '1px solid #ccc', fontSize: 18, fontWeight: 'bold', display: 'flex', alignItems: 'center', paddingLeft: 10, cursor: 'pointer', fontFamily: 'FuturaLight' }} onClick={() => navigation('/rooms')}>Stay</div>
-                                <div style={{ color: '#fff', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }} onClick={() => navigation('/menu')}>Dine</div>
-                                <div style={{ color: '#fff', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }}>Events</div>
-                                <div style={{ color: '#fff', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }} onClick={() => navigation('/gallery')}>Gallery</div>
-                                <Link style={{textDecoration: 'none'}} smooth to="/aboutus"><div style={{ color: '#fff', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }}>About Us</div></Link>
-                            </div>
-                        )}
-                    </div>
-                ) : (
-                    <div style={{ width: '90%', display: 'flex', justifyContent: 'space-around', marginTop: 0, alignItems: 'center' }}>
-                        {/* <div>
-                        <img src={Logo} style={{ width: 300, height: 100, objectFit: 'contain' }} />
-                    </div> */}
-                        <div style={{ display: 'flex', justifyContent: 'space-around', width: '50%' }}>
-                            <div style={{ color: '#fff', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }} onClick={() => navigation('/')}>Home</div>
-                            <div style={{ color: '#fff', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }} onClick={() => navigation('/rooms')}>Stay</div>
-                            <div style={{ color: '#fff', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }} onClick={() => navigation('/menu')}>Dine</div>
-                            <div style={{ color: '#fff', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }}>Events</div>
-                            <div style={{ color: '#fff', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }} onClick={() => navigation('/gallery')}>Gallery</div>
-                            <Link style={{textDecoration: 'none'}} smooth to="/aboutus"><div style={{ color: '#fff', cursor: 'pointer', fontFamily: 'FuturaLight', fontSize: 18 }}>About Us</div></Link>
-                        </div>
-                    </div>
-                )}
-                <div style={{ display: 'flex' }}>
                     <div
-                        style={{ width: screenSize.width < 700 ? 100 : 200, height: screenSize.width < 700 ? 20 : 80, border: '0.5px solid #fff', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: screenSize.width < 700 ? 12 : 16, color: '#fff', fontFamily: 'FuturaLight', cursor: 'pointer', backgroundColor: selectColor, marginRight: screenSize.width < 700 ? 20 : 0, borderRadius: screenSize.width < 700 ? 5 : 0 }}
-                        onMouseEnter={onHoverIn}
-                        onMouseLeave={onHoverOut}
-                        onClick={() => navigation('/book')}
+                        className="book-now"
+                        onClick={() => navigate('/book')}
                     >
                         BOOK NOW!
                     </div>
-                    {/* <div
-                    style={{ width: 80, height: 100, border: '0.5px solid #fff', display: 'flex', justifyContent: 'center', alignItems: 'center', borderLeftWidth: 0, cursor: 'pointer', backgroundColor: selectColor1 }}
-                    onMouseEnter={onHoverIn1}
-                    onMouseLeave={onHoverOut1}
-                    onClick={() => navigation('/rooms')}
-                >
-                    <img src={Bed} style={{ width: 30, height: 30, objectFit: 'cover' }} />
                 </div>
-                <div
-                    style={{ width: 80, height: 100, border: '0.5px solid #fff', display: 'flex', justifyContent: 'center', alignItems: 'center', borderLeftWidth: 0, cursor: 'pointer', backgroundColor: selectColor2 }}
-                    onMouseEnter={onHoverIn2}
-                    onMouseLeave={onHoverOut2}
-                >
-                    <img src={Dinner} style={{ width: 40, height: 40, objectFit: 'cover' }} />
-                </div> */}
-                </div>
-            </>
+            )}
         </div>
-    )
+    );
 }
 
-export default NavBar
+export default Navbar;
