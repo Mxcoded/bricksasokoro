@@ -1,10 +1,11 @@
-import React from 'react'
-import Banner from '../components/Banner'
-import AboutUs from '../components/AboutUs'
-import OurHotels from '../components/OurHotels'
-import HotelsFacilities from '../components/HotelsFacilities'
-import Rooms from '../components/Rooms'
-import Footer from '../components/Footer'
+import React from 'react';
+import Banner from '../components/Banner';
+import AboutUs from '../components/AboutUs';
+import OurHotels from '../components/OurHotels';
+import HotelsFacilities from '../components/HotelsFacilities';
+import Rooms from '../components/Rooms';
+import Footer from '../components/Footer';
+import '../App.css';
 
 function MainScreen() {
     return (

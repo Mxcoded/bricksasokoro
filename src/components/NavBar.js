@@ -4,7 +4,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Logo from '../assets/images/logo.png';
-import '../App.css'; // Import your CSS file
+
 
 function Navbar() {
     const [screenSize, setScreenSize] = useState(window.innerWidth);
