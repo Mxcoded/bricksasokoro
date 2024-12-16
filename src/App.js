@@ -1,7 +1,7 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import './index.css'
+import './index.css';
 import MainScreen from './screens/MainScreen';
 import AboutUsScreen from './screens/AboutUsScreen';
 import MenuScreen from './screens/MenuScreen';
@@ -12,15 +12,15 @@ import GalleryScreen from './screens/GalleryScreen';
 
 function App() {
   return (
-    <div style={{width: '100%'}}>
+    <div style={{ width: '100%' }}>
       <Routes>
-        <Route path='/' element={<MainScreen />} />
-        <Route path='/aboutus' element={<AboutUsScreen />} />
-        <Route path='/menu' element={<MenuScreen />} />
-        <Route path='/book' element={<BookScreen />} />
-        <Route path='/bookrooms' element={<BookRoomsScreen />} />
-        <Route path='/rooms' element={<RoomsScreen />} />
-        <Route path='/gallery' element={<GalleryScreen />} />
+        <Route path="/" element={<MainScreen />} />
+        <Route path="/aboutus" element={<AboutUsScreen />} />
+        <Route path="/menu" element={<MenuScreen />} />
+        <Route path="/book" element={<BookScreen />} />
+        <Route path="/bookrooms" element={<BookRoomsScreen />} />
+        <Route path="/rooms" element={<RoomsScreen />} />
+        <Route path="/gallery" element={<GalleryScreen />} />
       </Routes>
     </div>
   );

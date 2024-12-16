@@ -253,3 +253,246 @@
   background-color: transparent; /* Change background color to your desired color */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for a better visual */
 }
+
+/*Nav bar*/
+/* Navbar styles */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: #fff;
+  z-index: 1000;
+}
+
+.sticky-navbar {
+  position: fixed;
+  top: 0;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile container */
+.mobile-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  z-index: 2000;
+}
+
+.menu-icon, .close-icon {
+  font-size: 30px;
+  color: #000;
+  cursor: pointer;
+}
+
+.desktop-container {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.desktop-menu {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+}
+
+.menu-item {
+  color: #000;
+  font-family: 'FuturaLight', sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.book-now {
+  padding: 10px 20px;
+  background-color: #5A5D5F;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'FuturaLight', sans-serif;
+  font-size: 16px;
+}
+/* Banner. js */
+.banner-text {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-b {
+  color: #fff;
+  font-size: 210px;
+  font-family: 'BrownSugar';
+  position: relative;
+}
+
+.banner-b::after {
+  content: "";
+  background-image: url('assets/images/christmas-cap.png'); /* Path to your Christmas cap image */
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: -80px; /* Adjust as per your design */
+  left: 40%; /* Adjust as per your design */
+  width: 60px; /* Adjust as per your design */
+  height: 60px; /* Adjust as per your design */
+}
+
+.banner-name {
+  color: #fff;
+  font-size: 100px;
+  font-family: 'BrownSugar';
+  margin-top: -120px;
+}
+
+.banner-subtitle {
+  color: #fff;
+  font-size: 46px;
+  font-family: 'GothamLight';
+  margin-left: 0;
+  margin-top: -50px;
+}
+
+.banner-location {
+  color: #fff;
+  font-size: 35px;
+  font-family: 'GothamLight';
+  margin-left: 0;
+}
+.banner {
+  display: flex;
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically if required */
+  width: 100%;
+  padding: 10px; /* Optional padding for spacing */
+}
+
+.banner-image {
+  width: 100%; /* Make the image take up the full width of its container */
+  max-width: 600px; /* Limit the maximum width for larger screens */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Optional: Add rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for styling */
+}
+@media (max-width: 768px) {
+  .banner-image {
+    max-width: 90%; /* Adjust size for tablets and smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-image {
+    max-width: 100%; /* For mobile, let it take the full width */
+  }
+}
+
+/* About US - General Styles */
+/* App.css */
+.about-us-container {
+  width: 100%;
+  padding: 50px 20px;
+  box-sizing: border-box;
+}
+
+.about-us {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.about-us.mobile {
+  flex-direction: column;
+  text-align: center;
+}
+
+.about-us-text {
+  flex: 1;
+  max-width: 500px;
+}
+
+.about-us-title {
+  font-size: 2.5rem;
+  font-family: 'FuturaLight', sans-serif;
+  margin-bottom: 20px;
+}
+
+.about-us-subtitle {
+  font-size: 1.5rem;
+  font-family: 'GrandCru', serif;
+  margin-bottom: 15px;
+}
+
+.about-us-description,
+.about-us-footer-text {
+  font-size: 1rem;
+  font-family: 'FuturaLight', sans-serif;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.about-us-book-now {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #D2AF31;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.about-us-book-now:hover {
+  background-color: #c19a2b;
+}
+
+.about-us-image-container {
+  flex: 1;
+  max-width: 600px;
+}
+
+.about-us-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .about-us-image-container {
+      max-width: 100%;
+  }
+
+  .about-us-image {
+      margin-top: 20px;
+  }
+}
