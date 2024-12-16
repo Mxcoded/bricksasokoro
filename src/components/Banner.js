@@ -126,8 +126,7 @@ function Banner() {
                   
 
                 )}
-                <div style={{ width: '100%', display: 'flex', height: 150, justifyContent: 'space-around', marginTop: 100 }}>
-                    <div
+                <div
                         style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
                         onMouseOver={handleMouseOver1}
                         onMouseOut={handleMouseOut1}
@@ -143,7 +142,6 @@ function Banner() {
                         <div style={{ width: 0.5, height: isStretching2 ? '100px' : '70px', transition: 'height 0.5s ease-in-out', transform: isStretching2 ? 'scaleY(1)' : 'scaleY(1)', backgroundColor: '#fff' }}></div>
                         <div style={{ fontSize: 50, color: '#fff', fontFamily: 'FuturaLight', marginLeft: 20, cursor: 'pointer' }} onClick={() => navigation('/rooms')}>STAY</div>
                     </div>
-                </div>
             </div>
         </div>
     );
