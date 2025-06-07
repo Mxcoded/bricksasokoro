@@ -425,7 +425,7 @@
 /* App.css */
 .about-us-container {
   width: 100%;
-  padding: 50px 20px;
+  padding: 4rem;
   box-sizing: border-box;
 }
 
@@ -447,24 +447,30 @@
 }
 
 .about-us-title {
-  font-size: 2.5rem;
+  font-size: 30px;
   font-family: 'FuturaLight', sans-serif;
-  margin-bottom: 20px;
+  width: 350px;
 }
 
 .about-us-subtitle {
-  font-size: 1.5rem;
+  font-size: 20px;
   font-family: 'GrandCru', serif;
-  margin-bottom: 15px;
+  margin-top: 20px;
+    width: 400px;
+
+
 }
 
 .about-us-description,
 .about-us-footer-text {
-  font-size: 1rem;
+  font-size: 18px;
   font-family: 'FuturaLight', sans-serif;
   line-height: 1.6;
-  margin-bottom: 15px;
+  margin-top: 20px;
   color: #333;
+      width: 400px;
+
+
 }
 
 .about-us-book-now {
@@ -484,13 +490,12 @@
 
 .about-us-image-container {
   flex: 1;
-  max-width: 600px;
+  max-width: 800px;
 }
 
 .about-us-image {
   width: 100%;
   height: auto;
-  border-radius: 10px;
 }
 
 @media (max-width: 768px) {
@@ -502,3 +507,30 @@
       margin-top: 20px;
   }
 }
+
+    @media (max-width: 600px) {
+      .about-us-container{
+        padding: 0rem;
+      }
+      .about-us-text{
+        padding: 2rem;
+      }
+   .about-us-title {
+      text-align: center;
+      width: auto;
+    }
+    .about-us-subtitle {
+            width: auto;
+
+    }
+    .about-us-description{
+                  width: auto;
+
+    }
+    
+}
+
+
+  
+
+
