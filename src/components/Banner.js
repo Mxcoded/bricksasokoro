@@ -33,19 +33,10 @@ function Banner() {
     const [isHovered1, setIsHovered1] = useState(false);
     const [isHovered2, setIsHovered2] = useState(false);
 
-    const [isStretching, setIsStretching] = useState(false);
     const [isStretching1, setIsStretching1] = useState(false);
     const [isStretching2, setIsStretching2] = useState(false);
 
-    const handleMouseOver = () => {
-        setIsHovered(true);
-        setIsStretching(true);
-    };
-
-    const handleMouseOut = () => {
-        setIsHovered(false);
-        setIsStretching(false);
-    };
+    
 
     const handleMouseOver1 = () => {
         setIsHovered1(true);
@@ -107,7 +98,7 @@ function Banner() {
                 <></>
             )}
 
-            <div className="overlay1" style={{ zIndex: 200, width: '100%' }}>
+            <div className="overlay1" style={{  zIndex: 200, width: '100%' }}>
                 <NavBar />
                 {screenSize.width < 700 ? (
                     <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginTop: 40 }}>
@@ -126,7 +117,8 @@ function Banner() {
                   
 
                 )}
-                <div
+                <div style={{ display: screenSize.width < 700 ? "none" : "flex", justifyContent: 'space-around', alignItems: 'center', marginTop: 20, flexDirection: screenSize.width < 700 ? 'column' : 'row' }}>
+                    <div
                         style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
                         onMouseOver={handleMouseOver1}
                         onMouseOut={handleMouseOut1}
@@ -142,6 +134,23 @@ function Banner() {
                         <div style={{ width: 0.5, height: isStretching2 ? '100px' : '70px', transition: 'height 0.5s ease-in-out', transform: isStretching2 ? 'scaleY(1)' : 'scaleY(1)', backgroundColor: '#fff' }}></div>
                         <div style={{ fontSize: 50, color: '#fff', fontFamily: 'FuturaLight', marginLeft: 20, cursor: 'pointer' }} onClick={() => navigation('/rooms')}>STAY</div>
                     </div>
+                    <div
+                        style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+                        onMouseOver={handleMouseOver1}
+                        onMouseOut={handleMouseOut1}
+                    >
+                        <div style={{ width: 0.5, height: isStretching1 ? '100px' : '70px', transition: 'height 0.5s ease-in-out', transform: isStretching1 ? 'scaleY(1)' : 'scaleY(1)', backgroundColor: '#fff' }}></div>
+                        <div style={{ fontSize: 50, color: '#fff', fontFamily: 'FuturaLight', marginLeft: 20, cursor: 'pointer' }}>DINE</div>
+                    </div>
+                    <div
+                        style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+                        onMouseOver={handleMouseOver2}
+                        onMouseOut={handleMouseOut2}
+                    >
+                        <div style={{ width: 0.5, height: isStretching2 ? '100px' : '70px', transition: 'height 0.5s ease-in-out', transform: isStretching2 ? 'scaleY(1)' : 'scaleY(1)', backgroundColor: '#fff' }}></div>
+                        <div style={{ fontSize: 50, color: '#fff', fontFamily: 'FuturaLight', marginLeft: 20, cursor: 'pointer' }} onClick={() => navigation('/rooms')}>STAY</div>
+                    </div>
+                </div>
             </div>
         </div>
     );
